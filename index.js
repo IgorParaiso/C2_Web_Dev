@@ -12,23 +12,46 @@ color_options.push(right_choice);
 while (color_options.length < 10) {
     let new_color = escolheCor();
 
-    if (color_options.indexOf(new_color) === -1) {
+    if (color_options.indexOf(new_color) == -1) {
         color_options.push(new_color);    
     }   
 }
-
-function validateGuess(guess){
-    if (color_options.indexOf(guess) === -1){
-        alert("Ops, essa não é uma escolha válida");
-        start();
-    }
-}
+color_options.sort();
 
 function start(){
-    let guess = prompt("Estou pensando em uma dessas cores, você consegue advinhar qual é?\n\n" + color_options);
+
+    while (true){
+
+        let guess = prompt("Estou pensando em uma dessas cores, você consegue advinhar qual é?\n\n" + color_options[0] + "\t" + color_options[1] + '\n' + color_options[2] + '\t' + color_options[3] + '\n' + color_options[4] + '\t' + color_options[5] + '\n' + color_options[6] + '\t' + color_options[7] + '\n' + color_options[8] + '\t' + color_options[9]);
+
+        if (guess == 'stop'){
+            return false;
+        } 
+        
+        if (right_choice == guess) {
+            document.body.style.backgroundColor = right_choice;
+            alert("Parabéns você acertou!!!");
+            return true;
+        }
+        
+        if (color_options.indexOf(guess) == -1){
+            alert("Ops, essa não é uma escolha válida");
+        } else if (guess > right_choice) {
+            alert('Errou para mais');
+        } else if (guess < right_choice){
+            alert('Errou para menos')
+        }
+
+        
+
+        
+        
+        
+    }
+    
 
 }
 
-color_options.sort();
+
 console.log(color_options);
 console.log(right_choice);
